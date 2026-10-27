@@ -1,0 +1,15 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+*.tfplan
+terraform.tfvars
+*.auto.tfvars
+# 키 파일
+*.pem
+keys/
+# 기타
+*.old
+*.old-*
+.DS_Store
