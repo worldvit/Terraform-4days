@@ -23,8 +23,8 @@ check "terraform init 완료" \
   "실습 폴더에서 terraform init 을 실행했는지 확인하세요" \
   test -d .terraform
 
-check "AWS Provider 버전 고정(versions.tf)" \
-  "versions.tf 의 required_providers 에 hashicorp/aws 가 있는지 확인하세요" \
+check "Provider 버전 고정(terraform.tf)" \
+  "terraform.tf 의 required_providers 에 hashicorp/aws 가 있는지 확인하세요" \
   grep -rqs 'hashicorp/aws' --include='*.tf' .
 
 # ---- 단계 1: IAM ----
@@ -46,7 +46,7 @@ check "S3 버킷 버전 관리 Enabled" \
   bash -c "[ \"\$(aws s3api get-bucket-versioning --bucket '$BUCKET' --query Status --output text)\" = Enabled ]"
 
 check "S3 버킷에 Course=tf4d 태그" \
-  "provider.tf 의 default_tags 블록에 Course = \"tf4d\" 가 있는지 확인하세요" \
+  "providers.tf 의 default_tags 블록에 Course = \"tf4d\" 가 있는지 확인하세요" \
   bash -c "aws s3api get-bucket-tagging --bucket '$BUCKET' --query 'TagSet[?Key==\`Course\`].Value' --output text | grep -qx tf4d"
 
 # ---- 단계 3: EC2 ----
