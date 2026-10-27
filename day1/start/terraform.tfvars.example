@@ -1,0 +1,4 @@
+# 이 파일을 terraform.tfvars 로 복사한 뒤 값을 바꾸세요.
+#   cp terraform.tfvars.example terraform.tfvars
+bucket_name   = "tf4d-myname-20261027" # 본인 영문 이름 + 날짜로 바꾸기
+instance_type = "t3.micro"
