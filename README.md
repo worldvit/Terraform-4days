@@ -11,7 +11,8 @@ Terraform-4days/
 │   └── user_data.sh      작업용 EC2 초기 설치 스크립트 (Amazon Linux 2023)
 ├── day1/ ~ day4/
 │   ├── start/            그날 실습의 시작 코드
-│   └── solution/         정답 코드 (따라하기 버전과 동일)
+│   ├── solution/         정답 코드 (따라하기 버전과 동일)
+│   └── backend/          (Day 3) state 보관용 S3 버킷 정답 코드
 ├── grade/
 │   ├── day1.sh ~ day4.sh 일차별 채점 스크립트 (따라하기 버전 전용)
 │   ├── cleanup.sh        정리 확인 - 남은 과금 리소스 점검

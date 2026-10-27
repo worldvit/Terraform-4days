@@ -1,0 +1,4 @@
+# 이 파일은 직접 만들지 않아도 됩니다. 실습 문서의 명령이 terraform.tfvars 를 만들어 줍니다.
+#   echo "admin_cidr = \"$(curl -s https://checkip.amazonaws.com)/32\"" > terraform.tfvars
+# admin_cidr: 웹 서버에 SSH로 들어올 수 있는 주소 (작업용 EC2의 퍼블릭 IP/32)
+admin_cidr = "203.0.113.10/32"

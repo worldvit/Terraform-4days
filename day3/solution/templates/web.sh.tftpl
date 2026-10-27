@@ -1,0 +1,20 @@
+#!/bin/bash
+dnf install -y nginx
+
+TOKEN=$(curl -s -X PUT http://169.254.169.254/latest/api/token -H "X-aws-ec2-metadata-token-ttl-seconds: 60")
+AZ=$(curl -s -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/placement/availability-zone)
+LOCAL_IP=$(curl -s -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/local-ipv4)
+
+cat > /usr/share/nginx/html/index.html <<HTML
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><title>tf4d day3</title></head>
+<body style="font-family:sans-serif;text-align:center;margin-top:80px">
+  <h1>${tier} web</h1>
+  <p>AZ: $AZ / private IP: $LOCAL_IP</p>
+  <p>Terraform Day 3 · VPC + NAT + EBS</p>
+</body>
+</html>
+HTML
+
+systemctl enable --now nginx
