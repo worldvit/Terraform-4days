@@ -46,6 +46,12 @@ report "EBS 볼륨 (어디에도 연결되지 않은 것)" "$(aws ec2 describe-v
   --filters Name=status,Values=available \
   --query 'Volumes[].[VolumeId,Size]' --output text 2>/dev/null)"
 
+report "IAM 사용자 · 그룹 · Role (tf4d-, 작업용 EC2 Role 제외)" "$( {
+  aws iam list-users  --query 'Users[?starts_with(UserName, `tf4d-`)].UserName' --output text
+  aws iam list-groups --query 'Groups[?starts_with(GroupName, `tf4d-`)].GroupName' --output text
+  aws iam list-roles  --query 'Roles[?starts_with(RoleName, `tf4d-`) && RoleName!=`tf4d-workstation-role`].RoleName' --output text
+} 2>/dev/null | tr '\t' '\n' | grep -v '^$')"
+
 report "실습 태그(Course=tf4d)가 붙은 기타 리소스" "$(aws resourcegroupstaggingapi get-resources \
   --tag-filters Key=Course,Values=tf4d \
   --query 'ResourceTagMappingList[].ResourceARN' --output text 2>/dev/null | tr '\t' '\n' | grep -v '^$')"

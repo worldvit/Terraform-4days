@@ -1,0 +1,5 @@
+# cp terraform.tfvars.example terraform.tfvars 후 본인 값으로
+github_owner = "my-github-id"
+github_repo  = "tf4d-day4"
+# 계정에 GitHub OIDC 공급자가 이미 있으면(EntityAlreadyExists 오류) false 로
+# create_oidc_provider = false

@@ -13,6 +13,8 @@ Terraform-4days/
 │   ├── start/            그날 실습의 시작 코드
 │   ├── solution/         정답 코드 (따라하기 버전과 동일)
 │   └── backend/          (Day 3) state 보관용 S3 버킷 정답 코드
+│       (Day 4는 start/ · solution/ 이 그대로 내 GitHub 저장소가 됩니다:
+│        infra/ · modules/ · bootstrap/ · .github/workflows/)
 ├── grade/
 │   ├── day1.sh ~ day4.sh 일차별 채점 스크립트 (따라하기 버전 전용)
 │   ├── cleanup.sh        정리 확인 - 남은 과금 리소스 점검

@@ -28,6 +28,10 @@ timedatectl set-timezone Asia/Seoul
 # ---------------------------------------------------------------------
 dnf install -y git jq unzip tree
 
+# GitHub CLI (Day 4: 저장소 만들기 · 로그인 · Actions 확인). 실패해도 설치는 계속
+curl -fsSL https://cli.github.com/packages/rpm/gh-cli.repo -o /etc/yum.repos.d/gh-cli.repo \
+  && dnf install -y gh || echo "gh 설치 실패: Day 4 실습 문서의 설치 명령으로 다시 설치하세요"
+
 # ---------------------------------------------------------------------
 # 3. Terraform 설치 (HashiCorp 공식 배포 파일)
 # ---------------------------------------------------------------------
@@ -105,6 +109,7 @@ echo "== 작업용 EC2 환경 점검 =="
 command -v terraform >/dev/null && ok "Terraform  : $(terraform version | head -1)" || fail "Terraform이 설치되지 않았습니다"
 command -v aws >/dev/null       && ok "AWS CLI    : $(aws --version 2>&1 | cut -d' ' -f1)" || fail "AWS CLI가 없습니다"
 command -v git >/dev/null       && ok "git        : $(git --version)" || fail "git이 없습니다"
+command -v gh >/dev/null        && ok "GitHub CLI : $(gh --version | head -1)" || echo "  [참고] GitHub CLI(gh) 없음 - Day 4 실습 문서 0단계에서 설치"
 REGION_NOW=$(aws configure get region 2>/dev/null)
 [ "${REGION_NOW}" = "ap-northeast-2" ] && ok "기본 리전  : ${REGION_NOW}" || fail "기본 리전이 ap-northeast-2가 아닙니다 (현재: ${REGION_NOW:-없음})"
 ARN=$(aws sts get-caller-identity --query Arn --output text 2>/dev/null) \

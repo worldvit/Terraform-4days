@@ -1,0 +1,9 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+*.tfplan
+terraform.tfvars
+*.auto.tfvars
+# .terraform.lock.hcl 은 커밋합니다 (provider 버전을 팀 · CI와 똑같이 맞추기 위해)
