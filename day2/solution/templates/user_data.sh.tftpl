@@ -1,0 +1,18 @@
+#!/bin/bash
+# templatefile()이 ${name}, ${role} 자리에 서버별 값을 채워 넣습니다.
+apt-get update -y
+apt-get install -y nginx
+
+cat > /var/www/html/index.html <<HTML
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><title>${name}</title></head>
+<body style="font-family:sans-serif;text-align:center;margin-top:80px">
+  <h1>${name}</h1>
+  <p>${role}</p>
+  <p>Terraform Day 2 · for_each + templatefile</p>
+</body>
+</html>
+HTML
+
+systemctl enable --now nginx
